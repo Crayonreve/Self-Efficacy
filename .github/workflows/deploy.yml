@@ -34,21 +34,15 @@ jobs:
       - name: Install Railway CLI
         run: npm i -g @railway/cli
 
-      - name: Link project
-        working-directory: server
-        run: railway link --service eff-tracker-api
-        env:
-          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
       - name: Deploy
         working-directory: server
-        run: railway up --detach
+        run: railway up --service eff-tracker-api --detach
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Run migrations
         working-directory: server
-        run: railway run npx prisma migrate deploy
+        run: railway run --service eff-tracker-api npx prisma migrate deploy
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
