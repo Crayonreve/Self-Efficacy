@@ -38,19 +38,19 @@ jobs:
         working-directory: server
         run: railway link --service eff-tracker-api
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Deploy
         working-directory: server
         run: railway up --detach
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Run migrations
         working-directory: server
         run: railway run npx prisma migrate deploy
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
   # ── Frontend → Vercel ──
   deploy-frontend:
