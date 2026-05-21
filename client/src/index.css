@@ -1,0 +1,307 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #5244c2;
+  --primary-dark: #4120b9;
+  --primary-light: #7a32e0;
+  --bg-page: #f8f7ff;
+  --card-bg: #ffffff;
+  --text-primary: #1e1b4b;
+  --text-secondary: #6b6893;
+  --border-light: #e0d7fe;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --radius-xl: 0.75rem;
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 4px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 40px -10px rgba(82, 68, 194, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-primary);
+  background: var(--bg-page);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8f7ff 0%, #e0d7fe 100%);
+  background-attachment: fixed;
+}
+
+/* ── Glass morphism utility ── */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(224, 215, 254, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(224, 215, 254, 0.5);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ── Button base ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 0.625rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  outline: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #5244c2, #7a32e0);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(82, 68, 194, 0.35);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(82, 68, 194, 0.55), 0 4px 12px rgba(82, 68, 194, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #5244c2;
+  border: 2px solid #5244c2;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: rgba(82, 68, 194, 0.08);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(82, 68, 194, 0.25);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #5244c2;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: rgba(82, 68, 194, 0.06);
+  transform: scale(1.05);
+}
+
+/* ── Page transition ── */
+.page-enter {
+  animation: fade-in-up 0.35s ease-out both;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Step indicator pulse ── */
+@keyframes step-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(122, 50, 224, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(122, 50, 224, 0);
+  }
+}
+
+.step-active {
+  animation: step-pulse 2s ease-in-out infinite;
+}
+
+/* ── Count-up number animation ── */
+.count-up {
+  display: inline-block;
+  animation: count-up-pop 0.6s ease-out both;
+}
+
+@keyframes count-up-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Timeline ── */
+.timeline-line {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, #5244c2, #e0d7fe);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #5244c2;
+  border: 3px solid #f8f7ff;
+  box-shadow: 0 0 0 3px #e0d7fe;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4b5f9;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
+}
+
+/* ── Slide-in cards for wizard ── */
+@keyframes slide-in-card {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-card {
+  animation: slide-in-card 0.35s ease-out both;
+}
+
+/* ── Recharts tooltip override ── */
+.recharts-default-tooltip {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid #e0d7fe !important;
+  border-radius: 0.625rem !important;
+  box-shadow: var(--shadow-lg) !important;
+  font-family: inherit !important;
+}
+
+/* ── Help panel content ── */
+.help-content h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e1b4b;
+  margin: 1.2em 0 0.4em;
+}
+.help-content h3:first-child {
+  margin-top: 0;
+}
+.help-content h4 {
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: #5244c2;
+  margin: 1em 0 0.3em;
+}
+.help-content p {
+  margin: 0.5em 0;
+  line-height: 1.75;
+}
+.help-content ul,
+.help-content ol {
+  margin: 0.4em 0;
+  padding-left: 1.3em;
+}
+.help-content li {
+  margin-bottom: 0.25em;
+  line-height: 1.65;
+}
+.help-content strong {
+  color: #5244c2;
+  font-weight: 600;
+}
+
+/* ── Gauge / semi-circle defaults ── */
+.gauge-ring {
+  transition: stroke-dashoffset 1.5s ease-out;
+}
+
+/* ── Star float animation variants ── */
+@keyframes starFloat {
+  0%, 100% { transform: translateY(0) scale(var(--float-scale, 1)); opacity: var(--star-opacity, 0.6); }
+  50%      { transform: translateY(calc(var(--float-distance, 8px) * -1)) scale(calc(var(--float-scale, 1) * 1.06)); opacity: calc(var(--star-opacity, 0.6) * 1.25); }
+}
+@keyframes starFloat2 {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+  50%      { transform: translateY(-10px) scale(1.05); opacity: 0.85; }
+}
+@keyframes starFloat3 {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+  50%      { transform: translateY(-6px) scale(1.04); opacity: 0.7; }
+}
+@keyframes starFloat4 {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
+  50%      { transform: translateY(-14px) scale(1.07); opacity: 1; }
+}
+@keyframes starFloat5 {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+  50%      { transform: translateY(-8px) scale(1.03); opacity: 0.55; }
+}
